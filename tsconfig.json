@@ -8,6 +8,6 @@
       "resolveJsonModule": true,
       "noImplicitAny": false
     },
-    "include": ["src/**/*.ts", "src/**/*.json"]
+    "include": ["src/**/*.ts", "src/**/*.json", "types/**/*.ts"]
   }
   

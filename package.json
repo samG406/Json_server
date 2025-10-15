@@ -4,11 +4,12 @@
     "description": "JSON Server API for sales data",
     "main": "dist/src/server.js",
     "scripts": {
-      "build": "tsc",
+      "build": "npm run clean && tsc",
       "start": "node dist/src/server.js",
       "dev": "tsc -w & nodemon dist/src/server.js",
-        "prebuild": "npm run clean",
-        "clean": "rimraf dist"
+      "prebuild": "npm run clean",
+      "clean": "rimraf dist",
+      "postinstall": "npm run build"
     },
     "dependencies": {
         "cors": "^2.8.5",
