@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const json_server_1 = __importDefault(require("json-server"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
-const client_api_1 = require("./client-api");
+// No client API imports needed; only filtered endpoint is exposed
 const server = json_server_1.default.create();
 const router = json_server_1.default.router(path_1.default.join(__dirname, 'db.json'));
 const middlewares = json_server_1.default.defaults();
@@ -17,51 +17,6 @@ server.use((0, cors_1.default)({
     origin: true,
     credentials: true
 }));
-// Add custom routes before JSON Server router
-server.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', message: 'JSON Server is running!' });
-});
-// Chart data endpoints using your existing functions
-server.get('/api/charts/line', async (req, res) => {
-    try {
-        const data = await (0, client_api_1.fetchLineChartData)();
-        res.json(data);
-    }
-    catch (error) {
-        console.error('Error fetching line chart data:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-server.get('/api/charts/bar', async (req, res) => {
-    try {
-        const data = await (0, client_api_1.fetchBarChartData)();
-        res.json(data);
-    }
-    catch (error) {
-        console.error('Error fetching bar chart data:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-server.get('/api/charts/pie', async (req, res) => {
-    try {
-        const data = await (0, client_api_1.fetchPieChartData)();
-        res.json(data);
-    }
-    catch (error) {
-        console.error('Error fetching pie chart data:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-server.get('/api/charts/age-distribution', async (req, res) => {
-    try {
-        const data = await (0, client_api_1.fetchAgeDistributionData)();
-        res.json(data);
-    }
-    catch (error) {
-        console.error('Error fetching age distribution data:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
 // Filtered data endpoint - server-side filtering
 server.get('/api/salesData/filtered', async (req, res) => {
     try {
@@ -99,11 +54,5 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
     console.log(`🚀 JSON Server is running on port ${PORT}`);
     console.log(`📊 Raw data available at: http://localhost:${PORT}/salesData`);
-    console.log(`🔍 Health check: http://localhost:${PORT}/api/health`);
-    console.log(`📈 Chart endpoints:`);
-    console.log(`   • Line chart: http://localhost:${PORT}/api/charts/line`);
-    console.log(`   • Bar chart: http://localhost:${PORT}/api/charts/bar`);
-    console.log(`   • Pie chart: http://localhost:${PORT}/api/charts/pie`);
-    console.log(`   • Age distribution: http://localhost:${PORT}/api/charts/age-distribution`);
     console.log(`🔍 Filtered data: http://localhost:${PORT}/api/salesData/filtered`);
 });

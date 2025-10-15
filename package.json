@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/samG406/Json_server.git"
   },
-  "keywords": ["json-server", "api", "typescript"],
+  "keywords": [
+    "json-server",
+    "api",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
