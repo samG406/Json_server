@@ -2,11 +2,11 @@
     "name": "json-api",
     "version": "1.0.0",
     "description": "JSON Server API for sales data",
-    "main": "dist/app.js",
+    "main": "dist/server.ts",
     "scripts": {
       "build": "tsc",
-      "start": "node dist/server.js",
-      "dev": "tsc -w & nodemon dist/server.js",
+      "start": "node dist/server.ts",
+      "dev": "tsc -w & nodemon dist/server.ts",
       "prebuild": "npm run clean",
       "clean": "rimraf dist"
     },
