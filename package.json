@@ -1,0 +1,29 @@
+{
+    "name": "json-api",
+    "version": "1.0.0",
+    "description": "JSON Server API for sales data",
+    "main": "dist/app.js",
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/server.js",
+      "dev": "tsc -w & nodemon dist/server.js",
+      "prebuild": "npm run clean",
+      "clean": "rimraf dist"
+    },
+    "dependencies": {
+      "cors": "^2.8.5",
+      "json-server": "^0.17.3"
+    },
+    "devDependencies": {
+      "@types/cors": "^2",
+      "@types/express": "^4",
+      "@types/node": "^20",
+      "typescript": "^5",
+      "nodemon": "^3.0.0",
+      "rimraf": "^5.0.0"
+    },
+    "engines": {
+      "node": ">=18.0.0"
+    }
+  }
+  
